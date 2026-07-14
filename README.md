@@ -13,7 +13,7 @@ Testiranje postavljanja i performansi lokalnih LLM modela na regularnom hardveru
 ## Rezultati
 
 - `results/rezultati_ollama_cpu_lokalni_racunar.txt` — rezultati pomoću Ollame, CPU, lični računar (bez dedikovane GPU kartice)
-- `results/rezultati_lmstudio_kolega.txt` — rezultati pomoću LM Studio-a, isti test-prompt
+- `results/rezultati_lmstudio.txt` — rezultati pomoću LM Studio-a, isti test-prompt
 - `results/rezultati_vllm.txt` — rezultati pomoću vLLM servera (GPU, Colab T4): pojedinačni zahtev + paralelni zahtevi (1, 8 i 16 istovremenih korisnika)
 
 ## Testirani modeli
