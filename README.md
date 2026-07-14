@@ -12,7 +12,7 @@ Testiranje postavljanja i performansi lokalnih LLM modela na regularnom hardveru
 ## Rezultati
 
 - `results/rezultati_ollama_cpu_lokalni_racunar.txt` — rezultati pomoću Ollame, CPU, lični računar (bez dedikovane GPU kartice)
-- `results/rezultati_lmstudio_kolega.txt` — rezultati pomoću LM Studio-a (testirao kolega), isti test-prompt
+- `results/rezultati_lmstudio_kolega.txt` — rezultati pomoću LM Studio-a, isti test-prompt
 
 ## Testirani modeli
 
