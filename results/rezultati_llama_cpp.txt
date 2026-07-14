@@ -1,0 +1,260 @@
+MODEL
+C:\Models\qwen2.5-coder-1.5b-instruct-q4_k_m.gguf
+
+PROMPT
+Napisi Python funkciju koja proverava da li je broj prost, sa objasnjenjem koda.
+
+ODGOVOR
+Ova je Python funkcija koja proverava da li je broj prost:
+
+```python
+def je_prost(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+```
+Kod je proverava da li je broj prost da li je manji ili jedan ili veći od 1. Ako je broj manji ili jedan, on nije prost, te je funkcija vraca False. Ako je broj veći od 1, funkcija proverava da li je on djeljiv sa brojevima od 2 do proti sqrt broja (zbog toga da je svaki prost broj djeljiv sa najvećim dvostruko brojem). Ako je broj djeljiv sa bilo kojem od ovih brojeva, on nije prost, te je funkcija vraca False. Ako nema niti jednog od tih brojeva, broj je prost, te je funkcija vraca True.
+
+METRIKE
+
+Stop reason:                stop
+
+Prompt tokens total:        55
+Prompt eval count:          55 token(s)
+Prompt cached count:        0 token(s)
+Prompt eval duration:       3.499 s
+Prompt eval rate:           15.72 tokens/s
+Prompt time per token:      63.63 ms/token
+
+Eval count:                 256 token(s)
+Eval duration:              67.269 s
+Eval rate:                  3.81 tokens/s
+Eval time per token:        262.77 ms/token
+
+Total inference duration:   70.768 s
+End-to-end HTTP duration:   71.019 s
+
+Total tokens:               311
+
+MODEL
+C:\Models\qwen2.5-coder-7b-instruct-q4_k_m.gguf
+
+PROMPT
+Napisi Python funkciju koja proverava da li je broj prost, sa objasnjenjem koda.
+
+ODGOVOR
+Jasnije, Evo Python funkcije koja proverava da li je broj prost:
+
+```python
+def je_prost(broj):
+    """
+    Funkcija proverava da li je dati broj prost.
+    
+    Argumenti:
+    broj -- celi broj koji treba da se proveri
+    
+    Vraca:
+    - True ako je broj prost, False inace
+    """
+    
+    # Proveravamo da li je broj manji od 2, jer brojevi manji od 2 nisu prosti
+    if broj < 2:
+        return False
+    
+    # Proveravamo da li je broj deljiv sa bilo kom brojem od 2 do njegovog kvadrata
+    for i in range(2, int(broj**0.5) + 1):
+        if broj % i == 0:
+            return False
+    
+    # Ako ne smo nasli nijedan delilac, tada je broj prost
+    return True
+
+# Testirajmo funkciju
+print(je_prost(2))    # True
+print(je_prost(3))    # True
+print(je_prost(4))    # False
+print(je_prost(17))   # True
+print(je_prost(18))   # False
+```
+
+Objasnjenje koda:
+
+1. Funkcija `je_prost(broj)` prima jedan argument `broj` koji treba da proverimo da li je prost.
+
+2. Prvo proveravamo da li je broj manji od 2, jer brojevi manji od 2 nisu prosti.
+
+3. Pot
+
+METRIKE
+
+Stop reason:                length
+
+Prompt tokens total:        55
+Prompt eval count:          55 token(s)
+Prompt cached count:        0 token(s)
+Prompt eval duration:       8.680 s
+Prompt eval rate:           6.34 tokens/s
+Prompt time per token:      157.82 ms/token
+
+Eval count:                 375 token(s)
+Eval duration:              134.017 s
+Eval rate:                  2.80 tokens/s
+Eval time per token:        357.38 ms/token
+
+Total inference duration:   142.697 s
+End-to-end HTTP duration:   142.751 s
+
+Total tokens:               430
+
+MODEL
+C:\Models\qwen2.5-coder-7b-instruct-q4_k_m.gguf
+
+PROMPT
+Napisi Python funkciju koja proverava da li je broj prost, sa objasnjenjem koda.
+
+ODGOVOR
+Jasnije, Evo Python funkcije koja proverava da li je broj prost:
+
+```python
+def je_prost(broj):
+    """
+    Funkcija proverava da li je dati broj prost.
+    
+    Argumenti:
+    broj -- celi broj koji treba da se proveri
+    
+    Vraca:
+    - True ako je broj prost, False inace
+    """
+    
+    # Proveravamo da li je broj manji od 2, jer brojevi manji od 2 nisu prosti
+    if broj < 2:
+        return False
+    
+    # Proveravamo da li je broj deljiv sa bilo kom brojem od 2 do njegovog kvadrata
+    for i in range(2, int(broj**0.5) + 1):
+        if broj % i == 0:
+            return False
+    
+    # Ako ne smo nasli nijedan delilac, tada je broj prost
+    return True
+
+# Testirajmo funkciju
+print(je_prost(2))    # True
+print(je_prost(3))    # True
+print(je_prost(4))    # False
+print(je_prost(17))   # True
+print(je_prost(18))   # False
+```
+
+Objasnjenje koda:
+
+1. Funkcija `je_prost(broj)` prima jedan argument `broj` koji treba da proverimo da li je prost.
+
+2. Prvo proveravamo da li je broj manji od 2, jer brojevi manji od 2 nisu prosti.
+
+3. Potom koristimo petlju `for` da proverimo da li je broj deljiv sa bilo kom brojem od 2 do njegovog kvadrata. 
+
+   - Ovo je optimizacija jer ako je broj npr. 18, onda ne moramo da proverimo deljivost do 18. Samo do kvadrata broja (tj. 4) je dovoljno, jer ako je broj deljiv sa nekim brojem većim od 4, onda bi morao biti deljiv i sa manjim brojem.
+
+4. Ako nadjemo neki broj `i` od 2 do kvadrata broja koji deli `broj`, funkcija vraća `False`, što znači da broj nije prost.
+
+5. Ako ne nadjemo nikakav delilac, funkcija vraća `True`, što znači da je broj prost.
+
+6. Na kraju funkcije imamo neke testne pozive za ilustraciju funkcionalnosti.
+
+Ova funkcija je efikasna jer ne mora proveravati deljivost sa svim brojevima od 2 do `broj`, vec samo do njegovog kvadrata.
+
+METRIKE
+
+Stop reason:                stop
+
+Prompt tokens total:        55
+Prompt eval count:          55 token(s)
+Prompt cached count:        0 token(s)
+Prompt eval duration:       7.118 s
+Prompt eval rate:           7.73 tokens/s
+Prompt time per token:      129.42 ms/token
+
+Eval count:                 666 token(s)
+Eval duration:              278.771 s
+Eval rate:                  2.39 tokens/s
+Eval time per token:        418.57 ms/token
+
+Total inference duration:   285.889 s
+End-to-end HTTP duration:   285.956 s
+
+Total tokens:               721
+
+MODEL
+C:\Models\Llama-3.2-3B-Instruct-Q4_K_M.gguf
+
+PROMPT
+Napisi Python funkciju koja proverava da li je broj prost, sa objasnjenjem koda.
+
+ODGOVOR
+Ovo je jedan primjer Python funkcije koja proverava da li je broj prost.
+
+```python
+def je_prost(broj):
+    """
+    Proverava da li je broj prost.
+    
+    Args:
+        broj (int): Broj koji se proverava za prostost.
+    
+    Returns:
+        bool: Da li je broj prost.
+    """
+    if broj <= 1:
+        # Broj 1 i 0 nisu prosti
+        return False
+    
+    for i in range(2, int(broj ** 0.5) + 1):
+        # Proverava da li je broj deljiv s nekim brojem manjim od njega
+        if broj % i == 0:
+            # Broj je prost samo ako nije deljiv na neki broj manjim od njega
+            return False
+    
+    # Broj je prost ako nije deljiv na neki broj manjim od njega
+    return True
+
+# Primjer upotrebe
+broj = int(input("Unesite broj: "))
+if je_prost(broj):
+    print(broj, "je prosti broj.")
+else:
+    print(broj, "nije prosti broj.")
+```
+
+Ova funkcija proverava da li je broj prost pomoću sledećih stepenja:
+
+1. Broj 1 i 0 nisu prosti.
+2. Proverava da li je broj deljiv s nekim brojem manjim od njega.
+3. Broj je prost samo ako nije deljiv na neki broj manjim od njega.
+
+Ako broj nije deljiv na neki broj manjim od njega, funkcija vraća `True` (da je broj prost). Ako broj je deljiv na neki broj manjim od njega, funkcija vraća `False` (da nije broj prost).
+
+METRIKE
+
+Stop reason:                stop
+
+Prompt tokens total:        61
+Prompt eval count:          61 token(s)
+Prompt cached count:        0 token(s)
+Prompt eval duration:       4.676 s
+Prompt eval rate:           13.05 tokens/s
+Prompt time per token:      76.65 ms/token
+
+Eval count:                 434 token(s)
+Eval duration:              103.922 s
+Eval rate:                  4.18 tokens/s
+Eval time per token:        239.45 ms/token
+
+Total inference duration:   108.597 s
+End-to-end HTTP duration:   108.680 s
+
+Total tokens:               495
