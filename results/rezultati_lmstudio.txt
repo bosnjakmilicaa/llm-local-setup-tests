@@ -1,0 +1,161 @@
+qwen2.5-coder-7b-instruct
+
+Prediction Stats:
+  Stop Reason: eosFound
+  Tokens/Second: 1.99
+  Time to First Token: 13.503s
+  Prompt Tokens: 57
+  Predicted Tokens: 472
+  Total Tokens: 529
+
+qwen2.5-coder-1.5b-instruct
+
+Dobroda!
+
+Pomocu Pythona je moguće izvesti sljedeću funkciju koje provjerava da li je uneti broj prost:
+
+```python
+def je_prost(broj):
+    """
+    Proverava da li je broj prost.
+
+    :param broj: Int, broj koji se proverava
+    :return: bool, True ako je broj prost, False inače
+    """
+    if broj < 2:
+        return False
+
+    for i in range(2, int(broj ** 0.5) + 1):
+        if broj % i == 0:
+            return False
+
+    return True
+
+# Primjer:
+print(je_prost(7))  # Output: True
+print(je_prost(4))  # Output: False
+```
+
+Objasnjenje koda:
+
+1. Funkcija `je_prost` prima jedan parametar `broj`.
+2. Proverava se da li je broj manji od 2, što nije prost.
+3. Uključuje petlju koja proverava deljivost broja sa brojem od 2 doMath.sqrt(broj). Također dodaje +1 kako bi izbegli isključivanje korištenja `range()` funkcije pri čemu se broj koji je prosiravan kao argument na drugi stepen.
+4. Ukoliko je proverljena deljivost broja sa npr. 2, funkcija vrati `False`.
+5. Ako za sve iteracije petlje nije pronadjen broj koji deli broj, funkcija vrati `True`.
+
+Testirajte funkciju pretpotencijalno proštenim brojem, kao što je navedeno u primjeru.
+
+Prediction Stats:
+  Stop Reason: eosFound
+  Tokens/Second: 4.57
+  Time to First Token: 4.243s
+  Prompt Tokens: 57
+  Predicted Tokens: 407
+  Total Tokens: 464
+
+gemma 2-2b
+
+```python
+def is_prime(number):
+  """
+  This function checks if a number is prime.
+
+  Args:
+    number: The integer to check for primality.
+
+  Returns:
+    True if the number is prime, False otherwise.
+  """
+  # Handle special cases
+  if number <= 1:
+      return False
+  if number <= 3:
+      return True
+
+  # Check divisibility by 2 and 3
+  if number % 2 == 0 or number % 3 == 0:
+      return False
+
+  i = 5
+  while i * i <= number:
+    if number % i == 0 or number % (i + 2) == 0:
+      return False
+    i += 6
+
+  return True
+
+# Example usage
+number = 17
+if is_prime(number):
+  print(f"{number} is a prime number.")
+else:
+  print(f"{number} is not a prime number.")
+```
+
+**Explanation:**
+
+1. **Function Definition:** `def is_prime(number):` defines a function named `is_prime` that takes an integer as input (`number`).
+
+2. **Base Cases:**
+   - Numbers less than or equal to 1 are not prime, so it returns `False`.
+   - 2 and 3 are prime numbers, so they return `True`.
+
+3. **Divisibility by 2 and 3:**  If the number is divisible by 2 or 3, it's not prime (return `False`).
+
+4. **Iteration for Primality Check:**
+   - We start with `i = 5` (the next odd prime number).
+   - The loop continues as long as `i * i <= number`. This ensures we check only up to the square root of the number.
+   - Inside the loop, we check divisibility by `i` and `(i + 2)`. If a divisor is found, the number is not prime (return `False`).
+
+5. **Return True:** If the loop completes without finding any divisors, the number is prime (return `True`).
+
+
+**Example Usage:** The code demonstrates how to call the function and print the result for a given number.
+
+
+Prediction Stats:
+  Stop Reason: eosFound
+  Tokens/Second: 3.92
+  Time to First Token: 8.700s
+  Prompt Tokens: 51
+  Predicted Tokens: 504
+  Total Tokens: 555
+
+llama-3.2-3b-instruct
+
+Ovo je primer functiona u Pythonu koja proverava da li je broj prost:
+
+```python
+def je_prost(broj):
+    """
+    Proverava da li je broj prost.
+
+    :param broj: Broj koji se treba proveriti
+    :return: Ili ne, broj je prost ili ne.
+    """
+    if broj < 2:
+        return False
+    for i in range(2, int(broj ** 0.5) + 1):
+        if broj % i == 0:
+            return False
+    return True
+
+# Primer upotrebe:
+print(je_prost(11))   # Ili ne, 11 je prost ili ne.
+print(je_prost(100))  # Ili ne, 100 nije prost ili ne.
+```
+
+Izvršena logika koja se koristi u ovoj funkciji, se baza na sledeći princip:
+
+*   ako broj manji ili jednak 2, on nije prost (pača ili jedan);
+*   ako broj je prost, mora imati samo 1 i sebe kao faktore;
+*   prethodno odredene mogu se izbaciti ciklus jer ako nema nijednu različitog delitelja, onda je prost.
+
+Prediction Stats:
+  Stop Reason: eosFound
+  Tokens/Second: 4.25
+  Time to First Token: 8.081s
+  Prompt Tokens: 79
+  Predicted Tokens: 290
+  Total Tokens: 369

@@ -1,0 +1,296 @@
+=== Qwen2.5-Coder 7B ===
+Napisi Python funkciju koja proverava da li je broj prost, sa objasnjenjem koda.
+Ovdje je jedna Python funkcija za provjeru prostosti broja:
+
+```python
+def jeProstBroj(broj):
+    """
+    Funkcija provjerava da li je broj prost.
+
+    Parametri:
+    broj (int): Broj koji se provjerava
+
+    Vraca:
+    bool: True ako je broj prost, False inace
+    """
+
+    # Prost broj mora biti veci od 1 i ne može biti djeljiv sa bilo kim izvan njega osim 1 i sebe
+    if broj <= 1:
+        return False
+
+    for i in range(2, int(broj**0.5) + 1):
+        # Ako je broj djeljiv sa nekim od ovih brojeva, nije prost
+        if broj % i == 0:
+            return False
+
+    # Ako nijes je pronasao djelilac, broj je prost
+    return True
+
+# Test funkcije
+print(jeProstBroj(2))     # Treba vratiti True
+print(jeProstBroj(17))    # Treba vratiti True
+print(jeProstBroj(4))     # Treba vratiti False
+```
+
+Evo objašnjenja koda:
+
+1. Funkcija `jeProstBroj` uzima jedan parametar, `broj`, koji predstavlja broj koji se provjerava na prostnost.
+
+2. Provjera počinje s uslovom `if broj <= 1`. Prosti brojevi su definirani kao brojevi veći od 1 koji nemaju
+djelilaca osim 1 i sebe. Ako je broj manji ili jednak 1, funkcija vraća `False`.
+
+3. Sljedeći korak je petlja `for i in range(2, int(broj**0.5) + 1):`. Ova petlja provjerava djeljivost broja sa svim brojevima od 2 do
+kvadratnog korenja broja (plus jedan). Korištenje kvadratnog korena je efikasno jer ako je neki broj prost, njegov najmanji djelilac
+će biti manji ili jednak njegovom kvadratnom korijenu.
+
+4. Unutar petlje provjerava se djeljivost s trenutnim brojem `i` koristeći operator `%`. Ako je broj djeljiv (rezultat je 0), funkcija
+vraća `False`.
+
+5. Ako nijes je pronasao djelilac, petlja se završava i funkcija vraća `True`, što označava da je broj prost.
+
+6. Funkciji su dodana još jedne linije za testiranje - pozivaju se funkcija s različitim vrijednostima i ispisuju se rezultati.
+
+Ova funkcija efikasno provjerava prostnost broja, ali biti mora oprezan s velikim brojevima jer može doći do performansi problema. Ako
+je potrebno proveriti prostnost većih brojeva, možda bi bilo korisno implementirati optimizacije ili koristiti specifične algoritme za
+provjeru prostosti.
+
+total duration:       17m46.3301976s
+load duration:        255.7629ms
+prompt eval count:    55 token(s)
+prompt eval duration: 51.821533s
+prompt eval rate:     1.06 tokens/s
+eval count:           782 token(s)
+eval duration:        16m54.239546s
+eval rate:            0.77 tokens/s
+
+
+
+
+
+
+
+
+=== Qwen2.5-Coder 1.5B ===
+ Napisi Python funkciju koja proverava da li je broj prost, sa objasnjenjem koda.
+Dobroda učitano!
+
+Prolazanje prostih brojeva se može realizovati s pomocom uslovne logike i petlji. U ovoj navedenoj funkciji provera se da li je
+proslijedjeni broj je prost ili ne, kao i odgovor na zadatak:
+
+```python
+def je_prosli_broj(broj):
+    # Provera da li je broj 1 ili negativan
+    if broj <= 1:
+        return False
+
+    # Učitavanje brusa preko kojeg će se proći ciklus
+    for i in range(2, int(broj**0.5) + 1):
+        # Provera da li je broj deljiv sa njim
+        if broj % i == 0:
+            return False
+
+    return True
+
+# Testiranje funkcije
+print(je_prosli_broj(2))  # True
+print(je_prosli_broj(4))  # False
+print(je_prosli_broj(17)) # True
+print(je_prosli_broj(18)) # False
+```
+
+Kod se učitava broj koji treba proveriti i uslovno provjerava da li je manji ili jednak 1. Ako je broj manji ili jednak 1, funkcija
+vrati `False`, jer brojevi 1 i negativni su nesprostih.
+
+Na sljedem koraku se inicijalizuje petlja koja prođe od 2 do kvadratnog korena broja (ili do prethodnog prikazanog ključa),
+uključujući njega. Ukoliko je pronađen djelitelj (broj koji deli broj bez ostvarjene rezultatnozne parove), funkcija vrati `False`.
+
+U suprotnom, ako se do kraja petlje izvršila bez povratka `False`, funkcija vrati `True`, što indikira da je broj prost.
+
+total duration:       2m43.1685895s
+load duration:        264.9143ms
+prompt eval count:    55 token(s)
+prompt eval duration: 10.744332s
+prompt eval rate:     5.12 tokens/s
+eval count:           487 token(s)
+eval duration:        2m32.152304s
+eval rate:            3.20 tokens/s
+
+
+
+
+
+
+
+
+=== Gemma2 2B ===
+Napisi Python funkciju koja proverava da li je broj prost, sa objasnjenjem koda.
+```python
+def is_prime(number):
+  """
+  Verificuje da li je broj prost.
+
+  Args:
+    number: Broj koji treba provera.
+
+  Returns:
+    True ako je broj prost, false u suprotnom.
+  """
+
+  # Provjerava se i ako je broj manje od 2.
+  if number < 2:
+    return False
+
+  # Poredak provjerava da li je broj prost za brojeve od 2 do n.
+  for i in range(2, int(number**0.5) + 1):
+    if number % i == 0:
+      return False
+
+  # Ako nije bilo nijednog faktora koji je razlomljena, broj je prost.
+  return True
+
+# Primjer upotrebe funkcije
+print(f"6 je {is_prime(6)}") # True
+print(f"10 je {is_prime(10)}") # False
+```
+
+**Ovaj kod ima sljedeće detalje:**
+
+* **Funkcija `is_prime(number)`**: Ova funkcija primenjuje definiciju algoritma za provjeru prostosti broja.
+* **Vrste brojeva**: U ovom slučaju, program verifikuje da li je broj prost ili ne.
+* **Provjera primjerka**: Program primjerice verificira da li je 6 i 10 prost.
+* **Uključavanje opisa funkcije**: Ova funkcija i prikazuje opis funkcije u obliku komentara.
+
+**Kako to radi:**
+
+1. **Primer**:  Provera prostosti broja počinje od nule i ne proveri se ako je broj manje od 2, jer nisu nijedni faktori.
+2. **Iteracija**: Program iterira od 2 do √(number) - 1. Za svaku vrijednost `i`, program verifikuje da li je broj `number` deljiv s
+tim i. Ako je broj deljiv s `i`, onda je broj neprost.
+3. **Primjerka**:  Ako je broj nedeljivo od bilo kojeg faktora (2, 3, 5,...) od nula do √(number), onda je broj prost.
+
+
+
+
+
+total duration:       2m23.4294066s
+load duration:        305.2466ms
+prompt eval count:    31 token(s)
+prompt eval duration: 3.569904s
+prompt eval rate:     8.68 tokens/s
+eval count:           509 token(s)
+eval duration:        2m19.540308s
+eval rate:            3.65 tokens/s
+
+
+
+
+
+
+
+
+
+
+=== Llama3.2 3B ===
+Napisi Python funkciju koja proverava da li je broj prost, sa objasnjenjem koda.
+Ovo je Python funkcija koja checka da li je broj prost:
+
+```python
+def je_prost(broj):
+    """
+    Funkcija koja proverava da li je dadoj broju prost.
+
+    :param broj: Broj za koji se želi proveriti da li je prost.
+    :return: Da li je broj prost, ili poruka sa objašnjenjem razloga.
+    """
+
+    # Broj mora biti veličine 1 ili više
+    if not isinstance(broj, int) or broj <= 0:
+        return "Nedostaje se datibroj koji treba da bude prost!"
+
+    # Broj mora biti jedan ili više od jedne primljenom dijeljivog,
+    # osim samoga sebe
+    if len(set(range(2, int(broj ** 0.5) + 1)) & {broj}) != 0:
+        return f"{broj} ne je prost jer je dio {list(set(range(2, int(broj ** 0.5) + 1)))}"
+
+    # Broj je prost
+    return f"{broj} je prost jer nema nijedne primljenih dijeljivih osim samoga sebe"
+```
+
+Napomena:
+U funkciji se koristi if-else kontrolni struktura koja pristuplja broju koji se želi proveriti da li je prost.
+
+U primeru,ako se unese 11 kao parametar, funkcija vrati poruku '11 je prost jer nema nijedne primljenih dijeljivih osim samoga sebe'.
+
+total duration:       4m6.1610647s
+load duration:        332.7556ms
+prompt eval count:    51 token(s)
+prompt eval duration: 20.884999s
+prompt eval rate:     2.44 tokens/s
+eval count:           375 token(s)
+eval duration:        3m44.932586s
+eval rate:            1.67 tokens/s
+
+
+
+
+
+
+
+
+=== Mistral 7B ===
+Napisi Python funkciju koja proverava da li je broj prost, sa objasnjenjem koda.
+ Da bismo napisali Python funkciju za provjeru da li je broj prost, možemo koristiti sljedeći pristup:
+
+1. Funkcija prima jedan argument - broj koji se provjerava.
+2. Ako je uneti broj manji od 2, funkcija ga vraća False jer su prosti brojevi oni veći od 1.
+3. Ako nije prost broj, postoje dva slučaja: a) Broj se može podijeliti bez ostatka na neki manji broj od njega samog (npr. 4 se
+dijeli na 2 bez ostatka), u tom slučaju funkcija vraća False. b) Ako se broj ne može podijeliti bez ostatka na neki manji broj od
+njega, onda je prosti broj pa vraćamo True.
+
+Sledeći kod prikazuje funkciju za provjeru da li je broj prost:
+
+```python
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5)+1):
+        if n % i == 0:
+            return False
+    return True
+```
+
+U ovom kodu, `n**0.5` računa koren broja `n`, a `int(n**0.5)` ga okošara do najbližeg cijelog broja. Na taj način samo provjeravamo
+brojeve od 2 pa sve do najbližeg kvadrata od unesnog broja, što je efikasnija metoda za provjeru dali je broj prost, jer ako se broj
+može podijeliti na broj manji od njega (kao što je to slučaj sa 8 i 4), onda se taj broj mora biti unutar prvi navedenog intervala.
+
+Nakon definiranja funkcije možemo testirati je na primjeru:
+
+```python
+print(is_prime(2))  # True
+print(is_prime(3))  # True
+print(is_prime(4))  # False
+print(is_prime(5))  # True
+print(is_prime(6))  # False
+```
+
+total duration:       13m45.9354469s
+load duration:        51.3122ms
+prompt eval count:    32 token(s)
+prompt eval duration: 33.856108999s
+prompt eval rate:     0.95 tokens/s
+eval count:           589 token(s)
+eval duration:        13m12.021804s
+eval rate:            0.74 tokens/s
+
+
+
+
+
+
+
+
+NAME                  ID              SIZE      MODIFIED
+mistral:7b            6577803aa9a0    4.4 GB    About an hour ago
+llama3.2:3b           a80c4f17acd5    2.0 GB    2 hours ago
+gemma2:2b             8ccf136fdd52    1.6 GB    3 hours ago
+qwen2.5-coder:1.5b    d7372fd82851    986 MB    3 hours ago
+qwen2.5-coder:7b      dae161e27b0e    4.7 GB    3 hours ago
