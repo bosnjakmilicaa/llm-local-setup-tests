@@ -1,0 +1,74 @@
+
+======================================================================
+=== Qwen2.5-Coder-7B-Instruct-AWQ (vLLM, Colab T4) ===
+======================================================================
+
+Prompt: Napisi Python funkciju koja proverava da li je broj prost, sa objasnjenjem koda.
+
+
+Pojedinacni zahtev:
+  Time to First Token: 1.396s
+  Tokens/Second:       31.61
+  Prompt Tokens:       55
+  Predicted Tokens:    512
+  Ukupno vreme:        17.6s
+
+Paralelno 1 korisnika:
+  Ukupno vreme:        16.7s
+  Generisano tokena:   512
+  Protok servera:      30.67 tokens/s
+  Prosecno cekanje:    16.7s
+  Najgore cekanje:     16.7s
+
+Paralelno 8 korisnika:
+  Ukupno vreme:        20.5s
+  Generisano tokena:   3272
+  Protok servera:      159.82 tokens/s
+  Prosecno cekanje:    16.8s
+  Najgore cekanje:     20.5s
+
+Paralelno 16 korisnika:
+  Ukupno vreme:        25.0s
+  Generisano tokena:   6960
+  Protok servera:      278.19 tokens/s
+  Prosecno cekanje:    21.6s
+  Najgore cekanje:     25.0s
+
+Zavrsen test za Qwen2.5-Coder-7B-Instruct-AWQ.
+
+======================================================================
+=== Qwen3-8B-AWQ (vLLM, Colab T4) ===
+======================================================================
+
+Prompt: Napisi Python funkciju koja proverava da li je broj prost, sa objasnjenjem koda.
+
+
+Pojedinacni zahtev:
+  Time to First Token: 1.656s
+  Tokens/Second:       28.55
+  Prompt Tokens:       38
+  Predicted Tokens:    512
+  Ukupno vreme:        19.6s
+
+Paralelno 1 korisnika:
+  Ukupno vreme:        18.4s
+  Generisano tokena:   512
+  Protok servera:      27.81 tokens/s
+  Prosecno cekanje:    18.4s
+  Najgore cekanje:     18.4s
+
+Paralelno 8 korisnika:
+  Ukupno vreme:        23.2s
+  Generisano tokena:   3753
+  Protok servera:      161.68 tokens/s
+  Prosecno cekanje:    21.3s
+  Najgore cekanje:     23.2s
+
+Paralelno 16 korisnika:
+  Ukupno vreme:        28.6s
+  Generisano tokena:   7581
+  Protok servera:      265.30 tokens/s
+  Prosecno cekanje:    26.4s
+  Najgore cekanje:     28.6s
+
+Zavrsen test za Qwen3-8B-AWQ.
