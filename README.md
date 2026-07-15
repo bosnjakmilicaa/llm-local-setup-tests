@@ -1,6 +1,6 @@
 # LLM Local Setup Tests
 
-Testiranje postavljanja i performansi lokalnih LLM modela na regularnom hardveru (CPU i GPU), kroz četiri različita alata: Ollama, LM Studio, text-generation-webui i vLLM (server pristup za više korisnika).
+Testiranje postavljanja i performansi lokalnih LLM modela na regularnom hardveru (CPU i GPU), kroz pet različitih alata: Ollama, LM Studio, llama.cpp, text-generation-webui i vLLM (server pristup za više korisnika).
 
 ## Notebook-ovi (Google Colab)
 
@@ -12,8 +12,9 @@ Testiranje postavljanja i performansi lokalnih LLM modela na regularnom hardveru
 
 ## Rezultati
 
-- `results/rezultati_ollama_cpu_lokalni_racunar.txt` — rezultati pomoću Ollame, CPU, lični računar (bez dedikovane GPU kartice)
+- `results/rezultati_ollama_cpu_lokalni_racunar.txt` — rezultati pomoću Ollame, CPU, lični računar bez dedikovane GPU kartice
 - `results/rezultati_lmstudio.txt` — rezultati pomoću LM Studio-a, isti test-prompt
+- `results/rezultati_llama_cpp.txt` — rezultati pomoću llama.cpp, CPU, lokalni Windows računar
 - `results/rezultati_vllm.txt` — rezultati pomoću vLLM servera (GPU, Colab T4): pojedinačni zahtev + paralelni zahtevi (1, 8 i 16 istovremenih korisnika)
 
 ## Testirani modeli
@@ -25,23 +26,29 @@ Testiranje postavljanja i performansi lokalnih LLM modela na regularnom hardveru
 - Llama3.2 3B (Q4_K_M)
 - Mistral 7B (Q4_K_M)
 
+**llama.cpp (GGUF, Q4_K_M):**
+- Qwen2.5-Coder 7B
+- Qwen2.5-Coder 1.5B
+- Llama3.2 3B
+
 **vLLM (safetensors, AWQ 4-bit):**
-- Qwen2.5-Coder-7B-Instruct (AWQ) — isti model kao gore, radi direktnog poređenja alata
-- Qwen3-8B (AWQ) — novija generacija, trenutno među najboljima u maloj klasi
+- Qwen2.5-Coder-7B-Instruct (AWQ) — isti osnovni model kao gore, radi orijentacionog poređenja
+- Qwen3-8B (AWQ)
 
 ## Šta je testirano
 
 - Brzina generisanja (tokens/s) — CPU vs GPU
-- Brzina i kvalitet — Ollama vs text-generation-webui vs LM Studio vs vLLM
-- Kvalitet odgovora po veličini/specijalizaciji modela na složenijem zadatku (LRU cache implementacija)
+- Brzina i kvalitet — Ollama vs llama.cpp vs text-generation-webui vs LM Studio vs vLLM
+- Kvalitet odgovora na istom zadatku: Python funkcija za proveru da li je broj prost, sa objašnjenjem koda
+- llama.cpp kao lokalni OpenAI-kompatibilan server, uz merenje prompt-eval i generation metrika
 - Server pristup za tim (vLLM): ponašanje pod opterećenjem od 1, 8 i 16 istovremenih korisnika — ukupan protok servera (tokens/s), prosečno i najgore vreme čekanja po korisniku
 
 ### Ključni nalaz vLLM testa
 
-Zahvaljujući continuous batching-u, protok servera raste sa brojem istovremenih korisnika umesto da se zahtevi ređaju u red: Qwen2.5-Coder 7B na jednom T4 GPU-u daje ~31 tokena/s za jednog korisnika, a ~278 tokena/s ukupno za 16 istovremenih korisnika (~9x), pri čemu prosečno čekanje po korisniku raste tek sa ~17s na ~22s. Kod alata za jednog korisnika (Ollama, LM Studio) 16 istovremenih zahteva bi se obrađivalo sekvencijalno.
+Zahvaljujući continuous batching-u, protok servera raste sa brojem istovremenih korisnika: Qwen2.5-Coder 7B na jednom T4 GPU-u daje oko 31 token/s za jednog korisnika, a oko 278 token/s ukupno za 16 istovremenih korisnika, dok prosečno vreme čekanja raste sa približno 17 s na 22 s. Ostali alati u ovom radu nisu testirani pod istim paralelnim opterećenjem.
 
 ## Napomena o okruženju
 
-CPU testovi izvedeni su na ličnom računaru bez dedikovane GPU kartice (Intel integrisana grafika). GPU testovi izvedeni su putem Google Colab (Nvidia Tesla T4, 15GB VRAM) kao simulacija jačeg, ali i dalje regularnog hardvera — ne predstavlja instalaciju na fizičkom, privatnom računaru.
+Ollama CPU i llama.cpp CPU testovi izvedeni su na lokalnom računaru bez dedikovane GPU kartice. llama.cpp je kompajliran kao Release CPU build pomoću MSVC-a i CMake-a, a modeli su pokretani preko `llama-server` API-ja. GPU testovi izvedeni su putem Google Colab-a (NVIDIA Tesla T4, 15 GB VRAM), dok je LM Studio testiran na dodatnom uređaju.
 
-Napomene specifične za vLLM na T4: potrebna je pinovana verzija `vllm==0.9.2` (novije verzije ne rade na compute capability 7.5) uz `transformers<4.54`, kao i `--dtype half` jer T4 ne podržava bfloat16. Modeli se preuzimaju sa Hugging Face-a (Llama i Gemma zahtevaju HF nalog i prihvatanje licence, pa su korišćeni otvoreni Qwen modeli).
+Napomene specifične za vLLM na T4: korišćena je pinovana verzija `vllm==0.9.2` uz `transformers<4.54` i `--dtype half`. vLLM test je rađen sa AWQ modelima, dok su ostali alati prvenstveno koristili GGUF modele.
